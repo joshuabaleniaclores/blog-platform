@@ -1,10 +1,10 @@
 interface AuthCredentials {
   email: string;
   password: string;
+  [key: string]: unknown;
 }
 
 interface AuthResponse {
-  token: string;
   message: string;
 }
 
@@ -12,6 +12,7 @@ export type LoginRequest = AuthCredentials
 export type LoginResponse = AuthResponse
 
 export interface SignupRequest extends AuthCredentials {
-  name?: string;
+  role?: string;
+  username?: string;
 }
 export type SignupResponse = AuthResponse

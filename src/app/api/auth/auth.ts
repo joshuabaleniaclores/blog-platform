@@ -15,10 +15,10 @@ export async function login(params: LoginRequest): Promise<LoginResponse> {
   }
 }
 
-export async function signUp(params: SignupRequest): Promise<SignupResponse> {
+export async function signup(params: SignupRequest): Promise<SignupResponse> {
   try {
     const res = await fetchData<SignupRequest, SignupResponse>({
-      endpoint: '/auth/signup',
+      endpoint: '/v1/users/register',
       method: 'POST',
       params,
     });
