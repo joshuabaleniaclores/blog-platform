@@ -1,7 +1,7 @@
 import { useState } from "react";
-import type { LoginRequest, LoginResponse } from "@/types/auth";
-import { login } from "@/app/api/auth/auth";
 import { useRouter } from "next/navigation";
+import { login } from "@/app/api/auth/auth";
+import type { LoginRequest, LoginResponse } from "@/types/auth";
 
 interface UseLoginResult {
   login: (params: LoginRequest) => Promise<LoginResponse>;
