@@ -33,6 +33,6 @@ bun dev
 
 Open http://localhost:3000 with your browser to see the result.
 
-You can start editing the page by modifying app/page.tsx. The page auto-updates as you edit the file.
+You can start editing the page by modifying `app/page.tsx`. The page will auto-update in the browser as you make changes.
 
-This project uses next/font to automatically optimize and load Geist, a new font family for Vercel.
+This project uses the `next/font` optimization feature to automatically load and optimize the Geist font family, provided by Vercel, for better performance.
