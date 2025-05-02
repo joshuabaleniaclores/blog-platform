@@ -1,11 +1,21 @@
-'use client'
+"use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signUpSchema, SignUpInput } from "@/lib/validation/authValidationSchema";
+import {
+  signUpSchema,
+  SignUpInput,
+} from "@/lib/validation/authValidationSchema";
 import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useSignup } from "@/hooks/useSignup";
 
@@ -16,7 +26,7 @@ export default function SignupForm() {
       email: "",
       password: "",
       username: "",
-      role: "ADMIN"
+      role: "ADMIN",
     },
   });
 
@@ -82,7 +92,9 @@ export default function SignupForm() {
           )}
         />
 
-        <Button type="submit" disabled={loading}>Submit</Button>
+        <Button type="submit" disabled={loading} loading={loading}>
+          Submit
+        </Button>
       </form>
     </Form>
   );

@@ -10,7 +10,12 @@ interface UseLoginResult {
   error: Error | null;
 }
 
-export function useLogin(): UseLoginResult {
+interface UseLoginOptions {
+  onSuccess?: () => void;
+  onError?: () => void;
+}
+
+export function useLogin(options?: UseLoginOptions): UseLoginResult {
   const [data, setData] = useState<LoginResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
@@ -23,10 +28,12 @@ export function useLogin(): UseLoginResult {
     try {
       const response = await login(params);
       setData(response);
+      options?.onSuccess?.();
       router.push("/blog")
       return response;
     } catch (err) {
       setError(err as Error);
+      options?.onError?.();
       throw err;
     } finally {
       setLoading(false);

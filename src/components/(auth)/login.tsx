@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginInput, loginSchema } from "@/lib/validation/authValidationSchema";
 import { useForm } from "react-hook-form";
-
+import { toast } from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -25,7 +25,14 @@ export default function LoginForm() {
     },
   });
 
-  const { login, loading } = useLogin();
+  const { login, loading } = useLogin({
+    onSuccess: () => {
+      toast.success("Login successful!");
+    },
+    onError: () => {
+      toast.error("Login failed. Please check your credentials.");
+    },
+  });
 
   const onSubmit = async (formData: LoginInput) => {
     try {
@@ -72,7 +79,7 @@ export default function LoginForm() {
           )}
         />
 
-        <Button type="submit" disabled={loading}>
+        <Button type="submit" disabled={loading} loading={loading}>
           Submit
         </Button>
       </form>

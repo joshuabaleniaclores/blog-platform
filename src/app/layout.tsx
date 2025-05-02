@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../styles/globals.css";
+import ToasterProvider from "@/components/common/ToasterProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,7 +17,12 @@ export const metadata: Metadata = {
   title: "Blog Platform",
   applicationName: "Blog Platform",
   description: "A powerful blog platform built with Next.js.",
-  authors: [{ name: "Joshua Balenia Clores", url: "https://github.com/joshuabaleniaclores" }],
+  authors: [
+    {
+      name: "Joshua Balenia Clores",
+      url: "https://github.com/joshuabaleniaclores",
+    },
+  ],
   creator: "Joshua Balenia Clores",
 };
 
@@ -30,6 +36,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex justify-center w-full`}
       >
+        <ToasterProvider />
         {children}
       </body>
     </html>
