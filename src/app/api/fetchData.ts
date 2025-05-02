@@ -1,3 +1,6 @@
+const BASE_URL: string | undefined = process.env.NEXT_PUBLIC_API_URL;
+
+
 export async function fetchData<
   TParams extends Record<string, unknown>,
   TResponse = unknown
@@ -22,7 +25,7 @@ export async function fetchData<
       options.body = JSON.stringify(params);
     }
 
-    const response = await fetch(`/api${endpoint}`, options);
+    const response = await fetch(`${BASE_URL}/api${endpoint}`, options);
 
     if (!response.ok) {
       throw new Error(`Error`);

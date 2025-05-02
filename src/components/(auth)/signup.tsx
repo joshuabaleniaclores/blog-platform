@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useSignup } from "@/hooks/useSignup";
 
 export default function SignupForm() {
   const form = useForm<SignUpInput>({
@@ -14,12 +15,22 @@ export default function SignupForm() {
     defaultValues: {
       email: "",
       password: "",
-      name: "",
+      username: "",
+      role: "ADMIN"
     },
   });
 
-  const onSubmit = (data: SignUpInput) => {
-    console.log("Form Data:", data);
+  const { signup, loading } = useSignup();
+
+  const onSubmit = async (data: SignUpInput) => {
+    try {
+      const res = await signup(data);
+      console.log("Signup successful:", res);
+      console.log("Signup data:", data);
+    } catch (err) {
+      console.error("Signup failed:", err);
+      console.error("Signup failed data:", data);
+    }
   };
 
   return (
@@ -59,19 +70,19 @@ export default function SignupForm() {
 
         <FormField
           control={form.control}
-          name="name"
+          name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Full Name</FormLabel>
+              <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="Enter your full name" {...field} />
+                <Input placeholder="Enter your username" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button type="submit">Submit</Button>
+        <Button type="submit" disabled={loading}>Submit</Button>
       </form>
     </Form>
   );

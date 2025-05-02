@@ -1,3 +1,5 @@
+'use client'
+
 import SignupForm from "@/components/(auth)/signup";
 import {
   Card,
@@ -10,7 +12,7 @@ import {
 import Link from "next/link";
 
 export default function Signup() {
-  return (
+  return (<>
     <Card>
       <CardHeader>
         <CardTitle>Create Account</CardTitle>
@@ -33,5 +35,7 @@ export default function Signup() {
         </p>
       </CardFooter>
     </Card>
+    
+    </>
   );
 }

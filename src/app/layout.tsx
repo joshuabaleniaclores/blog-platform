@@ -16,12 +16,7 @@ export const metadata: Metadata = {
   title: "Blog Platform",
   applicationName: "Blog Platform",
   description: "A powerful blog platform built with Next.js.",
-  authors: [
-    {
-      name: "Joshua Balenia Clores",
-      url: "https://github.com/joshuabaleniaclores",
-    },
-  ],
+  authors: [{ name: "Joshua Balenia Clores", url: "https://github.com/joshuabaleniaclores" }],
   creator: "Joshua Balenia Clores",
 };
 
@@ -35,9 +30,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="flex flex-col sm:flex-row p-3 sm:gap-3 justify-center w-full">
-          {children}
-        </div>
+        {children}
       </body>
     </html>
   );
