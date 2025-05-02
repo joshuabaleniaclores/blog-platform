@@ -4,6 +4,7 @@ const messages = {
   email: "Please enter a valid email address.",
   password: "Invalid password.",
   username: "Name must be at least 2 characters.",
+  usernameRequired: "Username is required.", 
 };
 
 const emailField = z.string().email({ message: messages.email });
@@ -22,8 +23,8 @@ export const signUpSchema = z
 
 export const loginSchema = z
   .object({
-    email: emailField,
-    password: passwordField,
+    username: z.string().min(2, { message: messages.usernameRequired }), // Make username required with custom error message
+    password: usernameField,
   })
   .strict();
 
