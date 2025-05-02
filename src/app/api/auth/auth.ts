@@ -4,7 +4,7 @@ import { LoginRequest, LoginResponse, SignupRequest, SignupResponse } from "@/ty
 export async function login(params: LoginRequest): Promise<LoginResponse> {
   try {
     const res = await fetchData<LoginRequest, LoginResponse>({
-      endpoint: '/auth/login',
+      endpoint: '/v1/users/login',
       method: 'POST',
       params,
     });
