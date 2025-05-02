@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const messages = {
   email: "Please enter a valid email address.",
-  password: "Password must be at least 6 characters.",
+  password: "Invalid password.",
   username: "Name must be at least 2 characters.",
 };
 
