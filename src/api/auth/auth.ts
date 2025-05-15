@@ -1,4 +1,4 @@
-import { fetchData } from "@/app/api/fetchData";
+import { fetchData } from "@/api/fetchData";
 import { LoginRequest, LoginResponse, SignupRequest, SignupResponse } from "@/types/auth";
 
 export async function login(params: LoginRequest): Promise<LoginResponse> {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { signup } from "@/app/api/auth/auth";
+import { signup } from "@/api/auth/auth";
 import type { SignupRequest, SignupResponse } from "@/types/auth"; 
 
 export function useSignup() {

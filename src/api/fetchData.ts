@@ -1,3 +1,5 @@
+import { ErrorResponse } from "@/types/auth";
+
 const BASE_URL: string | undefined = process.env.NEXT_PUBLIC_API_URL;
 
 
@@ -12,7 +14,7 @@ export async function fetchData<
   endpoint: string;
   params?: TParams;
   method: "GET" | "POST" | "PUT" | "DELETE";
-}): Promise<TResponse> {
+}): Promise<TResponse | ErrorResponse> {
   try {
     const options: RequestInit = {
       method,
@@ -26,15 +28,25 @@ export async function fetchData<
     }
 
     const response = await fetch(`${BASE_URL}/api${endpoint}`, options);
+    const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(`Error`);
+      return {
+        error: true,
+        status: response.status,
+        statusText: response.statusText,
+        data,
+      };
     }
 
-    const data = (await response.json()) as TResponse;
-    return data;
+    return data as TResponse;
   } catch (error) {
     console.error("Fetch error:", error);
-    throw error;
+    return {
+      error: true,
+      status: 500,
+      statusText: "Fetch error",
+      data: error,
+    };
   }
 }

@@ -33,7 +33,12 @@ export interface Data {
 
 export type LoginRequest = AuthCredentials;
 export type LoginResponse = AuthResponse<Data>;
-
+export type ErrorResponse =  {
+  error: true;
+  status: number;
+  statusText: string;
+  data?: unknown;
+}
 export interface SignupRequest extends AuthCredentials {
   role?: string;
 }

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { login } from "@/app/api/auth/auth";
+import { login } from "@/api/auth/auth";
 import type { LoginRequest, LoginResponse } from "@/types/auth";
 
 interface UseLoginResult {
