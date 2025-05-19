@@ -1,9 +1,9 @@
-import { fetchData } from "@/api/fetchData";
-import { LoginRequest, LoginResponse, SignupRequest, SignupResponse } from "@/types/auth";
+import { makeApiRequest } from "@/api/makeApiRequest";
+import { ErrorResponse, LoginRequest, LoginResponse, SignupRequest, SignupResponse } from "@/types/auth";
 
-export async function login(params: LoginRequest): Promise<LoginResponse> {
+export async function login(params: LoginRequest): Promise<LoginResponse | ErrorResponse> {
   try {
-    const res = await fetchData<LoginRequest, LoginResponse>({
+    const res = await makeApiRequest<LoginRequest, LoginResponse>({
       endpoint: '/v1/users/login',
       method: 'POST',
       params,
@@ -15,9 +15,9 @@ export async function login(params: LoginRequest): Promise<LoginResponse> {
   }
 }
 
-export async function signup(params: SignupRequest): Promise<SignupResponse> {
+export async function signup(params: SignupRequest): Promise<SignupResponse | ErrorResponse> {
   try {
-    const res = await fetchData<SignupRequest, SignupResponse>({
+    const res = await makeApiRequest<SignupRequest, SignupResponse>({
       endpoint: '/v1/users/register',
       method: 'POST',
       params,

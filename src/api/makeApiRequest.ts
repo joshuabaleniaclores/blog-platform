@@ -3,7 +3,7 @@ import { ErrorResponse } from "@/types/auth";
 const BASE_URL: string | undefined = process.env.NEXT_PUBLIC_API_URL;
 
 
-export async function fetchData<
+export async function makeApiRequest<
   TParams,
   TResponse = unknown
 >({
