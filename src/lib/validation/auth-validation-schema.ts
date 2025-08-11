@@ -1,26 +1,51 @@
 import { z } from "zod";
 
-//#region Common Messages
+//#region Messages
 const messages = {
-  email: "Please enter a valid email address.",
-  password: "Invalid password.",
-  username: "Name must be at least 2 characters.",
-  usernameRequired: "Username is required.", 
-};
+  emailRequired: "Email is required.",
+  emailInvalid: "Please enter a valid email address.",
+  passwordRequired: "Password is required.",
+  passwordMin: "Password must be at least 6 characters.",
+  usernameRequired: "Username is required.",
+  usernameMin: "Username must be at least 2 characters.",
+} as const;
+//#endregion
+
+//#region Fields
+const emailField = z
+  .string()
+  .trim()
+  .min(1, { message: messages.emailRequired })
+  .email({ message: messages.emailInvalid });
+
+const passwordField = z
+  .string()
+  .trim()
+  .min(1, { message: messages.passwordRequired })
+  .min(6, { message: messages.passwordMin });
+
+const optionalUsernameField = z
+  .string()
+  .trim()
+  .min(2, { message: messages.usernameMin })
+  .optional();
+
+const requiredUsernameField = z
+  .string()
+  .trim()
+  .min(1, { message: messages.usernameRequired })
+  .min(2, { message: messages.usernameMin });
+
+const roleField = z.string().trim();
 //#endregion
 
 //#region Signup
-const emailField = z.string().email({ message: messages.email });
-const passwordField = z.string().min(6, { message: messages.password });
-const usernameField = z.string().min(2, { message: messages.username }).optional();
-const roleField = z.string();
-
 export const signUpSchema = z
   .object({
     email: emailField,
     password: passwordField,
-    username: usernameField,
-    role: roleField
+    username: optionalUsernameField,
+    role: roleField,
   })
   .strict(); // prevent extra unwanted fields
 //#endregion
@@ -28,8 +53,8 @@ export const signUpSchema = z
 //#region Login
 export const loginSchema = z
   .object({
-    username: z.string().min(2, { message: messages.usernameRequired }), 
-    password: usernameField,
+    username: requiredUsernameField,
+    password: passwordField,
   })
   .strict();
 //#endregion

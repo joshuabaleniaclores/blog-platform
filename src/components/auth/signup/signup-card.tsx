@@ -30,7 +30,7 @@ export default function SignupCard() {
         </CardContent>
         <CardFooter>
           <p className="text-sm text-center">
-            Already have an account?{" "}
+            Already have an account?&nbsp;
             <Link href="/login" className="text-blue-600 hover:underline">
               Log in here
             </Link>
