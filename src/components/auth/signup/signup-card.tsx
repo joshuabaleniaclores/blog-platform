@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import {
   Card,
   CardContent,
@@ -8,12 +10,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import Link from "next/link";
+import SignupForm from "./signup-form";
 
 export default function SignupCard() {
    return (
     <div className="min-h-screen flex items-center justify-center px-4">
-      <Card className="w-96 max-w-md">
+      <Card className="w-96">
         <CardHeader>
           <CardTitle>Create Account</CardTitle>
           <CardDescription>
@@ -24,7 +26,7 @@ export default function SignupCard() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {/* <SignupForm /> */}
+          <SignupForm />
         </CardContent>
         <CardFooter>
           <p className="text-sm text-center">
